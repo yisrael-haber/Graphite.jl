@@ -1,7 +1,8 @@
 using Graphite
 using Test
+using Graphs
 
-@testset "Graphite.jl" begin
-    # Write your tests here.
-    @test 1==1
+@testset "Uniform Spanning Trees" begin
+    node_num, deg = 1000, 4
+    @test ne(ust(random_regular_graph(node_num, deg))) == node_num - 1
 end
