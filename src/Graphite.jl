@@ -4,9 +4,11 @@ using Graphs
 using Revise
 using PyCall
 using StatsBase
+using BenchmarkTools
 
 py_imports = [
-    "import networkx as nx"
+    "import networkx as nx",
+    "from networkx import node_boundary"
 ]
 
 function __init__()
@@ -23,5 +25,6 @@ include("nx_interface/refs.jl")
 
 export ust
 export edge_boundary, node_boundary
-export convert_from_nx, convert_to_nx
+export convert_from_nx_graph, convert_graph_to_nx
+export benchmark_node_boundary
 end

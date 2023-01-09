@@ -2,7 +2,7 @@ using Graphite
 using Test
 using Graphs
 
-@testset "Uniform Spanning Trees" begin
+@testset "UST is tree" begin
     node_num, deg = 1000, 4
     @test ne(ust(random_regular_graph(node_num, deg))) == node_num - 1
 end
@@ -16,7 +16,7 @@ end
     @test length(node_boundary(cycle, nodes)) == Int64(floor(node_num * (2/3)))
 end
 
-@testset "Interface with nx" begin
+@testset "nx interface" begin
     g = random_regular_graph(200, 4)
-    @test convert_from_nx(convert_to_nx(g)) == g
+    @test convert_from_nx_graph(convert_graph_to_nx(g)) == g
 end
