@@ -15,3 +15,8 @@ end
     @test length(edge_boundary(cycle, nodes)) == Int64(floor(node_num * (2/3)))
     @test length(node_boundary(cycle, nodes)) == Int64(floor(node_num * (2/3)))
 end
+
+@testset "Interface with nx" begin
+    g = random_regular_graph(200, 4)
+    @test convert_from_nx(convert_to_nx(g)) == g
+end

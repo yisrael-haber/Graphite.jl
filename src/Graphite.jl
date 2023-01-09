@@ -18,8 +18,10 @@ function __init__()
 end
 
 include("algorithms/refs.jl")
+include("nx_interface/refs.jl")
 # Write your package code here.
 
 export ust
 export edge_boundary, node_boundary
+export convert_from_nx, convert_to_nx
 end
