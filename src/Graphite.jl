@@ -27,4 +27,6 @@ export ust
 export edge_boundary, node_boundary
 export convert_from_nx_graph, convert_graph_to_nx
 export benchmark_node_boundary
+export rem_node_edges!, rem_nodes_edges!
+export is_regular_nz, is_regular_wz, is_k_regular_nz, is_k_regular_wz
 end

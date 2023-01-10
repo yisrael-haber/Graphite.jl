@@ -7,7 +7,7 @@ using Graphs
     @test ne(ust(random_regular_graph(node_num, deg))) == node_num - 1
 end
 
-@testset "Edge boundary" begin 
+@testset "Edge and node boundary" begin 
     node_num = 10_000
     cycle, nodes = cycle_graph(node_num), collect(1:3:node_num)
     
@@ -20,3 +20,9 @@ end
     g = random_regular_graph(200, 4)
     @test convert_from_nx_graph(convert_graph_to_nx(g)) == g
 end
+
+@testset "Node remove by edges" begin
+    println("IMPLEMENT TESTS")
+end
+
+include("tests/regularity_tests.jl")

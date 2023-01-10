@@ -1,3 +1,4 @@
 include("ust.jl")
 include("boundary.jl")
-include("chains.jl")
+include("node_remove.jl")
+include("regularity.jl")
