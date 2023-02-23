@@ -6,6 +6,6 @@ end
 
 function convert_from_nx_graph(orig_graph)
     G = Graph(length(orig_graph.nodes))
-    for edge in orig_graph.edges add_edge!(G, Edge(edge[1], edge[2])) end
+    for edge ∈ orig_graph.edges add_edge!(G, Edge(edge[1], edge[2])) end
     return G
 end

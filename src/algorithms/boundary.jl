@@ -1,43 +1,68 @@
-sort_two(val1::Int64, val2::Int64) = if val1>=val2 return (val2, val1) else return (val1, val2) end
+#=
+TODO: LOOK AT USING SETDIFF TO SIMPLIFY
+=#
+
 
 #=
-    Calculates the vector of all edge that start at a node in node_vec,
-    and end at a vertex outside of node_vec.
+    Calculates the vector of all edge that start at a node in ns1,
+    and end at a vertex outside of ns2.
 =#
-function edge_boundary(orig_graph::AbstractGraph, node_set::Set{Int64})
-    edges_from_node_set = []
+function edge_boundary(G::SimpleGraph, ns1::Set{Int64}, ns2::Set{Int64})
+    if length(ns2) ≡ 0 return end
+
+    edge_bound = []
     
-    for node in node_set for neighbor in neighbors(orig_graph, node) 
-        v_one,v_two = sort_two(node, neighbor)
-        push!(edges_from_node_set, Edge(v_one, v_two))
-    end end
-    
-    edges_set = Set(edges_from_node_set) 
-    boundary = []
-    
-    for edge in edges_set
-        if (src(edge) in node_set && dst(edge) in node_set) continue 
-        else push!(boundary, edge) end
+    for node ∈ ns1 
+        if node ∈ ns2 continue end
+        for neighbor ∈ neighbors(G, node) 
+            if neighbor ∈ ns2 push!(edge_bound, Edge(node, neighbor)) else continue end 
+        end 
     end
-    return boundary
+    return Set(edge_bound)
 end
 
+function edge_boundary(G::SimpleGraph, ns::Set{Int64})
+    edge_bound = []
+
+    for node ∈ ns
+        for neighbor ∈ neighbors(G, node) 
+            if neighbor ∉ ns push!(edge_bound, Edge(node, neighbor)) else continue end 
+    end end
+
+    return Set(edge_bound)
+end
 
 #= 
-    Calculates the set of all nodes that are outside of node_vec, 
-    that are connected by an edge to a node in node_vec.
+    Calculates the set of all nodes that are outside of nv, 
+    that are connected by an edge to a node in nv.
 =#
-function node_boundary(orig_graph::AbstractGraph, node_set::Set{Int64})
-    edges_from_node_set = []
+function node_boundary(G::SimpleGraph, ns::Set{Int64})
+    node_bound = []
     
-    for node in node_set for neighbor in neighbors(orig_graph, node) 
-        if !(neighbor in node_set) push!(edges_from_node_set, neighbor) end
-    end end
-    
-    val = Set(edges_from_node_set)
-    return val
+    for node ∈ ns for neighbor ∈ neighbors(G, node) 
+        if (neighbor ∉ ns) push!(node_bound, neighbor) end
+        end 
+    end
+
+    return Set(node_bound)
 end
 
-edge_boundary(orig_graph::AbstractGraph, node_vec::Vector{Int64}) = edge_boundary(orig_graph, Set(node_vec))
+function node_boundary(G::SimpleGraph, ns1::Set{Int64}, ns2::Set{Int64})
+    if length(ns2) ≡ 0 return end
 
-node_boundary(orig_graph::AbstractGraph, node_vec::Vector{Int64}) = node_boundary(orig_graph, Set(node_vec))
+    node_bound = []
+    
+    for node ∈ ns2 for neighbor ∈ neighbors(G, node) 
+        if (neighbor ∈ ns1) push!(node_bound, neighbor) end
+    end end
+    
+    return Set(node_bound)
+end
+
+edge_boundary(G::SimpleGraph, nv::Vector{Int64}) = edge_boundary(G, Set(nv))
+
+edge_boundary(G::SimpleGraph, nv::Vector{Int64}, nv2::Vector{Int64}) = edge_boundary(G, Set(nv), Set(nv2))
+
+node_boundary(G::SimpleGraph, nv::Vector{Int64}) = node_boundary(G, Set(nv))
+
+node_boundary(G::SimpleGraph, nv::Vector{Int64}, nv2::Vector{Int64}) = node_boundary(G, Set(nv), Set(nv2))

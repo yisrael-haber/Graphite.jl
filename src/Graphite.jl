@@ -12,7 +12,7 @@ py_imports = [
 ]
 
 function __init__()
-    for line in py_imports
+    for line ∈ py_imports
         py"""
         $$line
         """
