@@ -38,9 +38,13 @@ end
 =#
 function node_boundary(G::SimpleGraph, ns::Set{Int64})
     node_bound = []
-    
+
+    println("------------------------\n HEREHEREHEREHERE--------------------------")
+
     for node ∈ ns for neighbor ∈ neighbors(G, node) 
-        if (neighbor ∉ ns) push!(node_bound, neighbor) end
+        if (neighbor ∉ ns) 
+            push!(node_bound, neighbor) 
+        end
         end 
     end
 

@@ -4,7 +4,7 @@ TODO: Implement functions from "cuts.py" - https://github.com/networkx/networkx/
 
 =#
 
-cut_size(G::SimpleGraph, ns::Set{Int64}) = length∘edge_boundary(G, ns)
+cut_size(G::SimpleGraph, ns::Set{Int64}) = (length∘edge_boundary)(G, ns)
 
 cut_size(G::SimpleGraph, ns::Set{Int64}, ns2::Set{Int64}) = (length∘edge_boundary)(G, ns, ns2)
 
@@ -35,4 +35,4 @@ mixing_expansion(G, ns::Set{Int64}, ns2::Set{Int64}) = (cut_size(G, ns, ns2) / (
 
 mixing_expansion(G::SimpleGraph, ns::Set{Int64}) = mixing_expansion(G, ns, setdiff(G, ns))
 
-node_boundary(G::SimpleGraph, ns::Set{Int64}) = ((length∘node_boundary)(G, ns) / (length(ns)))
+node_expansion(G::SimpleGraph, ns::Set{Int64}) = ((length∘node_boundary)(G, ns) / (length(ns)))
