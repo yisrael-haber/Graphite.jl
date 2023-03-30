@@ -5,8 +5,12 @@
 [![Coverage](https://codecov.io/gh/yisrael-haber/Graphite.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/yisrael-haber/Graphite.jl)
 [![Coverage](https://coveralls.io/repos/github/yisrael-haber/Graphite.jl/badge.svg?branch=main)](https://coveralls.io/github/yisrael-haber/Graphite.jl?branch=main)
 
-This is intended as a small replication of most of the NetworkX library in python, but in native Julia.
+This is intended as a small replication of most of the importat parts of the NetworkX library in python, but in native Julia.
 
 This is not intended for reinvention of the wheel regarding graph algorithms. 
 
 If you want to contribute you are more than welcome to help!
+
+## **TO IMPLEMENT**
+
+- Create a strong method for comparing PyCall runs with networkx and native Graphite code.
