@@ -8,15 +8,19 @@ stationary_dist_choice(deg_list::Vector{Int64}) = sample(1:length(deg_list), Pro
 
 next_step(G::SimpleGraph, curr_vertex::Int64) = (rand∘neighbors)(G, curr_vertex)
 
+function add_edges_from!(tree::SimpleGraph, edges_to_add::Vector{Tuple{Int64, Int64}})
+    for edge in edges_to_add add_edge!(tree, edge[1], edge[2]) end
+end
+
 function create_tree(node_num::Int64, edges_to_add::Vector{Tuple{Int64, Int64}})
     tree = SimpleGraph(node_num)
-    for edge in edges_to_add add_edge!(tree, edge[1], edge[2]) end
+    add_edges_from!(tree, edges_to_add)
     return tree
 end
 
 function do_next_step!(G::SimpleGraph, next_choice::Int64, edges_to_add::Vector{Tuple{Int64, Int64}}, visited::Vector{Bool})
     next_next_vertex = next_step(G, next_choice)
-    if visited[next_next_vertex] == 0
+    if (visited[next_next_vertex] ≡ 0)
         push!(edges_to_add, (next_choice, next_next_vertex))
         visited[next_next_vertex] = 1
     end

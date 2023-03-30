@@ -2,6 +2,13 @@ using Graphite
 using Test
 using Graphs
 
+#=
+
+THERE IS A REAL NEED FOR MUCH MORE TESTS ASAP. THERE IS ALSO A DIRECT NEED FOR BENCHMARKING
+AGAINST NETWORKX. IF YOU CAN HELP WITH THAT PLEASE REACH OUT.
+
+=#
+
 @testset "UST is tree" begin
     node_num, deg = 1000, 4
     @test ne(ust(random_regular_graph(node_num, deg))) == node_num - 1

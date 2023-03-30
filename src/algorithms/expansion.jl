@@ -1,9 +1,3 @@
-#=
-
-TODO: Implement functions from "cuts.py" - https://github.com/networkx/networkx/blob/main/networkx/algorithms/cuts.py.
-
-=#
-
 cut_size(G::SimpleGraph, ns::Set{Int64}) = (length∘edge_boundary)(G, ns)
 
 cut_size(G::SimpleGraph, ns::Set{Int64}, ns2::Set{Int64}) = (length∘edge_boundary)(G, ns, ns2)
